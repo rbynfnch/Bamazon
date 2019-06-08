@@ -4,30 +4,38 @@ var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({
   host: "localhost",
-  port: 8000,
+  port: 3306,
   user: "root",
   password: "root",
-  database: "BamazonDB"
+  database: "Bamazon"
 });
 
 connection.connect(function(err) {
   if (err) throw err;
+  console.log("connected as id " + connection.threadId);
   queryProducts();
 });
 
 function queryProducts() {
-  var query =
-    'SELECT item_id AS SKU, product_name AS "Product Description", price AS Price FROM products';
-  connection.query(query, function(err, res) {
-    console.table(res);
-    goShopping();
+  connection.query("SELECT * FROM products", function(err, res) {
+    if (err) throw err;
+    console.log(res);
+    // connection.end();
   });
 }
 
+// function queryProducts() {
+  //   var query =
+  //     'SELECT item_id AS SKU, product_name AS "Product Description", price AS Price FROM products';
+  //   connection.query(query, function(err, res) {
+    //     console.table(res);
+    //     goShopping();
+    //   });
+// }
+
 function goShopping() {
   inquirer
-    .prompt([
-      {
+    .prompt([{
         type: "input",
         message: "What product id would you like to buy?",
         name: "id",
@@ -62,14 +70,14 @@ function goShopping() {
           if (selectedItem[0].stock_quantity >= 0) {
             console.log(
               " \n\
-                In Stock: " +
-                selectedItem[0].stock_quantity +
-                " Order Quantity: " +
-                quantity
-            );
+              In Stock: " +
+              selectedItem[0].stock_quantity +
+              " Order Quantity: " +
+              quantity
+              );
             console.log(
-              " \n Your Total Is: " +
-                quantity * selectedItem[0].price +
+              " \n Your Total Is: $" +
+                quantity * selectedItem[0].price.toExponential(2) +
                 " US Dollars.\n\
                 Thank you for shopping Bamazon.\n "
             );
@@ -93,6 +101,8 @@ function goShopping() {
             queryProducts();
           }
         }
-      );
-    });
-}
+        );
+      });
+    }
+    
+    goShopping();

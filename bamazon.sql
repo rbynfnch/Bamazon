@@ -27,36 +27,5 @@ SELECT * FROM products;
 
 -- Populate this database with around 10 different products. (i.e. Insert "mock" data rows into this database and table).
 --Create
-INSERT INTO songs (product_name, department_name, price, stock_quantity)
-VALUES ("Lava Lamp", "Home Decor", "29.99", "100"), ("Jeans", "Apparel", "49.99", "100"), ("Samsung HD TV", "Electronics", "529.99", "100"),
-("Samsung HD TV", "Electronics", "529.99", "100"),
-("Samsung HD TV", "Electronics", "529.99", "100"); 
-
-INSERT INTO songs (title, artist, genre)
-VALUES ("Moves Like Jagger", "Maroon 5", "Top 10"); 
-
-INSERT INTO songs (title, artist, genre)
-VALUES ("Party Rock Anthem", "LMFAO", "Today's Hits"); 
-
-INSERT INTO songs (title, artist, genre)
-VALUES ("Uptown Funk", "Mark Ronson", "Top 10");
-
-INSERT INTO songs (title, artist, genre)
-VALUES ("Call Me Maybe", "Carly Rae Jepson", "Classic"); 
-
-INSERT INTO songs (title, artist, genre)
-VALUES ("Dark Horse", "Katy Perry", "Top 10"); 
-
-INSERT INTO songs (title, artist, genre)
-VALUES ("Call Me", "Blondie", "Classic");
-
-
-
-
--- Then create a Node application called bamazonCustomer.js. Running this application will first display all of the items available for sale. Include the ids, names, and prices of products for sale.
--- The app should then prompt users with two messages.
-
-
-
--- The first should ask them the ID of the product they would like to buy.
--- The second message should ask how many units of the product they would like to buy.
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Lava Lamp", "Home Decor", "29.99", "100"), ("Jeans", "Apparel", "49.99", "100"), ("Samsung HD TV", "Electronics", "529.99", "100")
